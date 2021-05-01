@@ -5,6 +5,7 @@ import {useState} from 'react';
 function App() {
 
   const [cant, setCant] = useState(0);
+  const [term, setTerm] = useState('');
 
   return (
     <div className="App">
@@ -13,6 +14,8 @@ function App() {
         <Form
           cant={cant}
           setCant={setCant}  
+          term={term}
+          setTerm={setTerm}
         />
       </div>
     </div>
