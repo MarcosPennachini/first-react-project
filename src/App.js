@@ -34,7 +34,6 @@ function App() {
           setCant={setCant}  
           term={term}
           setTerm={setTerm}
-          cotization={cotization}
           setCotization={setCotization}
           setLoading={setLoading}
         />

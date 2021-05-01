@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { calcularTotal } from '../helpers';
 
 
-const Form = ( {cant, setCant, term, setTerm, cotization, setCotization, setLoading} ) => {
+const Form = ( {cant, setCant, term, setTerm, setCotization, setLoading} ) => {
 
     const [error, setError] = useState(false);
     
