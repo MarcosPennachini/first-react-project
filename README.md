@@ -12,4 +12,4 @@ I used [Skeleton](http://getskeleton.com/) for some basic styles and [Moving Let
 
 ### Author
 
-[Marcos Pennachini](https://linkedin/in/marcos-pennachini)
+[Marcos Pennachini](https://linkedin.com/in/marcos-pennachini)
