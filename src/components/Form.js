@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
+import { calcularTotal } from '../helpers';
 
 
-const Form = ( {cant, setCant, term, setTerm} ) => {
+const Form = ( {cant, setCant, term, setTerm, cotization, setCotization, setLoading} ) => {
 
     const [error, setError] = useState(false);
     
@@ -10,25 +11,34 @@ const Form = ( {cant, setCant, term, setTerm} ) => {
     };
 
     const handleSelect = (e) => {
-        setTerm(e.target.value);
+        setTerm(parseInt(e.target.value));
     }
 
     const handleForm = (e) => {
         e.preventDefault();
-
+        console.log(cant, term);
         //Validation
-        if( cant === 0 || term === '' ){
+        if( (cant === 0 || NaN) || (term === '' || NaN) ){
             setError(true);
-            console.log('Los campos no pueden estar vacíos');
+            //console.log('Los campos no pueden estar vacíos');
+            return;
         } else setError(false);
+
+        setLoading(true);
+        //Calc cotization
+        
+        setTimeout(() => {
+            const totalCotization = calcularTotal(cant, term);
+            setCotization(totalCotization);
+            setLoading(false);
+            document.getElementById('form').reset();
+        }, 3000);
+
     }
 
     return ( 
         
-        <form onSubmit={handleForm}>
-            {cant}
-            <br/>
-            {term}
+        <form id="form" onSubmit={handleForm}>
           <div className="row">
               <div>
                   <label>Cantidad Prestamo</label>
@@ -61,8 +71,6 @@ const Form = ( {cant, setCant, term, setTerm} ) => {
               </div>
           </div>
             {(error) ? <div className="error">Los campos no pueden estar vacíos</div> : null}
-            
-
         </form>
     );
 }
