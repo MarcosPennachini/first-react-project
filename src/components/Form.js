@@ -1,15 +1,34 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const Form = ( {cant, setCant} ) => {
+
+const Form = ( {cant, setCant, term, setTerm} ) => {
+
+    const [error, setError] = useState(false);
     
     const handleCant = (e) => {
         setCant(parseInt(e.target.value));
     };
 
+    const handleSelect = (e) => {
+        setTerm(e.target.value);
+    }
+
+    const handleForm = (e) => {
+        e.preventDefault();
+
+        //Validation
+        if( cant === 0 || term === '' ){
+            setError(true);
+            console.log('Los campos no pueden estar vacíos');
+        } else setError(false);
+    }
+
     return ( 
         
-        <form>
+        <form onSubmit={handleForm}>
             {cant}
+            <br/>
+            {term}
           <div className="row">
               <div>
                   <label>Cantidad Prestamo</label>
@@ -24,6 +43,7 @@ const Form = ( {cant, setCant} ) => {
                   <label>Plazo para Pagar</label>
                   <select 
                     className="u-full-width"
+                    onChange={handleSelect}
                   >
                     <option value="">Seleccionar</option>
                     <option value="3">3 meses</option>
@@ -40,6 +60,9 @@ const Form = ( {cant, setCant} ) => {
                 />
               </div>
           </div>
+            {(error) ? <div className="error">Los campos no pueden estar vacíos</div> : null}
+            
+
         </form>
     );
 }
